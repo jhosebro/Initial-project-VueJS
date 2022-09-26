@@ -99,16 +99,19 @@ const addValue = (value) => {
   <h1 v-else-if="counter > 0" :style="styleColor">{{ counter }}</h1>
   <h1 v-else :style="styleColorWhite">{{ counter }}</h1>
   <ul class="list-group">
-    <li class="list-group-item d-flex justify-content-between align-items-center" v-for="value in values" :key="value">{{ value }}</li>
+    <li class="list-group-item d-flex justify-content-between align-items-center" v-for="value in values" :key="value">
+      {{ value }}</li>
   </ul>
 
 
 
-
-  <button type="button" class="btn btn-success" @click="increment">Increment</button>
-  <button type="button" class="btn btn-danger" @click="decrement">Decrement</button>
-  <button type="button" class="btn btn-info" @click="reset">Reset</button>
-  <button type="button" class="btn btn-primary" :disabled="validate()" @click="addValue(counter)">Add favorite value</button>
+  <div class="btn-group">
+    <button type="button" class="btn btn-success" @click="increment">Increment</button>
+    <button type="button" class="btn btn-danger" @click="decrement">Decrement</button>
+    <button type="button" class="btn btn-info" @click="reset">Reset</button>
+    <button type="button" class="btn btn-primary" :disabled="validate()" @click="addValue(counter)">Add favorite
+      value</button>
+  </div>
 </template>
 
 <style>
