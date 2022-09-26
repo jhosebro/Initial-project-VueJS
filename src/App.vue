@@ -1,5 +1,5 @@
 <script setup>
-import {ref} from 'vue';
+import { ref } from 'vue';
 
 const name = 'Hello Jhosebro'
 const styleColor = 'color: green';
@@ -11,17 +11,20 @@ const active = true;
 const fruitsArray = ['🍎', '🍌', '🍉', '🍇', '🍓', '🍍'];
 const priceList = [
   { name: 'Apple', price: 10, description: 'An apple' },
-  { name: 'Banana', price: 20, description: 'A banana'},
-  { name: 'Orange', price: 30, description: 'An orange'},
+  { name: 'Banana', price: 20, description: 'A banana' },
+  { name: 'Orange', price: 30, description: 'An orange' },
   { name: 'Grape', price: 40, description: 'A Grape' },
   { name: 'Strawberry', price: 50, description: 'An strawberry' },
-  { name: 'Pineapple', price: 60, description: 'An pineapple'},
+  { name: 'Pineapple', price: 60, description: 'An pineapple' },
 ];
 const personObject = { name: 'Jhosebro', age: 25, hobby: 'Programming' };
 
 const handleClick = () => {
   console.log('You clicked me!');
 }
+
+const values = ref([]);
+
 
 const counter = ref(0);
 
@@ -36,6 +39,24 @@ const decrement = () => {
 const reset = () => {
   counter.value = 0;
 }
+
+const validate = () => {
+  if (values.value.includes(counter.value)) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
+const addValue = (value) => {
+  validate();
+  values.value.push(value);
+}
+
+
+
+
 
 </script>
 
@@ -71,19 +92,23 @@ const reset = () => {
     </template>
   </ul>
   <br>
-  <button @:click="handleClick()">Click me!</button>
+  <button type="button" class="btn btn-warning" @:click="handleClick()">Click me!</button>
   <br>
   <h1>Counter</h1>
   <h1 v-if="counter < 0" :style="styleColorRed">{{ counter }}</h1>
   <h1 v-else-if="counter > 0" :style="styleColor">{{ counter }}</h1>
   <h1 v-else :style="styleColorWhite">{{ counter }}</h1>
-  
-  
-  
-  
-  <button @click="increment">Increment</button>
-  <button @click="decrement">Decrement</button>
-  <button @click="reset">Reset</button>
+  <ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center" v-for="value in values" :key="value">{{ value }}</li>
+  </ul>
+
+
+
+
+  <button type="button" class="btn btn-success" @click="increment">Increment</button>
+  <button type="button" class="btn btn-danger" @click="decrement">Decrement</button>
+  <button type="button" class="btn btn-info" @click="reset">Reset</button>
+  <button type="button" class="btn btn-primary" :disabled="validate()" @click="addValue(counter)">Add favorite value</button>
 </template>
 
 <style>

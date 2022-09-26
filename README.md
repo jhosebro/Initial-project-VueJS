@@ -32,4 +32,5 @@ npm run build
 
 - HTML <br>
 - Vue.js <br>
-- JavaScript
+- JavaScript <br>
+- Bootstrap 
